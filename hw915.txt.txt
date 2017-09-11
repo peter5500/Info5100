@@ -1,0 +1,69 @@
+
+Scenarios: 
+
+1. Hiking
+ 1.1. Use the computer to buy climbing appliances on online shop
+      	object:computer, buyer
+      	method:search online, 
+ 1.2. Rent a ReachNow to drive to mountain rainier on weekends with friends
+ 1.3. Use google map to find the way to the destination
+ 1.4. On the way, fill the gas
+ 1.5. On the way, eat at restaurant for lunch
+ 1.6. Buy the ticket to get into the park
+ 1.7. Use the cellphone to take pitures and post it on instagram
+ 1.8. Book a hotel or check in the hotel.
+ 1.9. Drive home and return the car 
+ 
+
+2. Organise a career fair(Suppose you are the organiser) 
+ 2.1. Survey which company is interested in coming to the career fair and collect the information
+ 2.2. Discuss with other staff and make a schedule for the day
+ 2.3. Arrange the site and date for helding the career fair 
+ 2.4. Post the information on website
+ 2.5. Buy the commercial to publicize the career fair 
+ 2.6. Hire the staff member and teach them to guide the attendance
+ 2.7. Fix up the place for the career fair
+ 2.8. Control and command the situation on the career fair day
+ 
+ 
+
+3. Order Pizza from Pizza Hut
+ 3.1. Download the Pizza Hut app form app store
+ 3.2. Go to the app and choose the flavor
+ 3.3. Pay for the pizza with credit card
+ 3.4. Pick up the pizza when it's sent to your home
+
+4. Design a code sharing platform (eg: Github).
+
+5. Design a soft-drink/snacks vending machine.
+ 5.1. Choose some of the popular snacks/drink from the statics on the web to sell in the machine
+ 5.2. Setup the monitor on the machine that can tell the consumer the price of the product, and the balance they need to give
+ 5.2. Setup the system that can distinguish the money consumer put in, and give back the correct change by calculating
+ 5.3. Design the machine that can maintain the temperature at an exact point to keep the snacks/drink fresh
+ 5.4. setup the machine that can move the thing consumer buy from shelf to them
+ 5.5. Setup an alarm when encounter big impact to prevent the money or the product from stolen
+ 5.6. Setup a timer to turn off part of the light if the machine hasn't been used for a while to save electricity
+ 
+
+Tips : 
+1. You may go as deep as you want , like the first scenario will be an example, you can simplify it or make it more complex.
+2. Use pseudo code. This assignment has nothing to do with the real code, we want you to experience what is object oriented language. 
+
+
+Success criteria:
+1. Be able to parsing the daily activities into some small block and learn the way to design things. Different may have different ways to parse the same scenario. So make your own copy. 
+
+2. Be able to make progress according to reviews from teachers and TA. 
+
+Requirement:
+
+1. Deadline is Sep, 15th. If you encounter any problem to meet this deadline, please contact TA or Professor directly.
+
+2. Individual work, not team project. But can have discuss with other classmates. 
+
+Contact GitHub
+API
+Training
+Shop
+Blog
+About
