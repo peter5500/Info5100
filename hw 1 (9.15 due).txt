@@ -1,49 +1,358 @@
-
 Scenarios: 
 
 1. Hiking
- 1.1. Use the computer to buy climbing appliances on online shop
-      	object:computer, buyer
-      	method:search online, 
- 1.2. Rent a ReachNow to drive to mountain rainier on weekends with friends
- 1.3. Use google map to find the way to the destination
- 1.4. On the way, fill the gas
- 1.5. On the way, eat at restaurant for lunch
- 1.6. Buy the ticket to get into the park
- 1.7. Use the cellphone to take pitures and post it on instagram
- 1.8. Book a hotel or check in the hotel.
- 1.9. Drive home and return the car 
  
+ 1.1. Rent a ReachNow to drive to mountain rainier on weekends with friends
+ 1.2. Use google map to find the way to the destination
+ 1.3. On the way, fill the gas
+ 1.4. On the way, eat at restaurant for lunch
+ 1.5. Buy the ticket to get into the park
+ 1.6. Use the cellphone to take pitures and post it on instagram
+ 1.7. Book a hotel or check in the hotel.
+    
+      traveler
+      Data: name, phone
+      Behaviors: RentCar, ReturnCar, SearchDestination, FollowMap, FindRestaurant, AuthorizeCard, pay, BuyTickets, OrderFood, eat, BookHotel, CheckIn, CheckOut, DownloadApp, TakePictures, sleep, DriveHome     
 
+      car
+      Data: model, GasRemain
+      Behavior: launch, stop, Gasfilled
+      
+      CarRental
+      Data: CarType, price, CarRemain
+      Behavior: charge, PermitCar
+
+      GasStation
+      Data: gas
+      Behavior: FillGas, charge
+
+      restaurant
+      Data: food, menu
+      Behavior: CookFood, charge 
+
+      TicketOffice 
+      Data: ticket
+      Behavior: Hasticket, charge
+
+      Cellphone
+      Data: Instagram, camera, app
+      Behavior: upload, TypeWords, 
+
+      Hotels
+      Data: room, staff
+      Behavior: ConfirmInfor, charge 
+
+----Sequence of Flow - Invoke Objects with Behaviors
+
+      traveler Peter, Mark, Mary;
+      car BMW;
+      CarRental RentCar;
+      GasStation gas;
+      restaurant food;
+      restaurant menu;
+      TicketOffice tickets;
+      cellphone app;
+      hotel room;
+      hotel staff;
+
+      if ( CarRental.HasCar( BMW ) );
+      	traveler.RentCar;
+  	  CarRental.charge;
+             traveler.pay;
+	       travler.launch;
+
+      traveler.SearchDestination ( mountain rainier );
+      	traveler.FollowMap;
+ 
+      if ( GasRemain( gas < 5 ) );
+      	GasStation.FillGas;
+ 	   GasStation.charge;
+              traveler.pay;   
+
+      if boolean( Peter hungry || Mark hungry || Mary hungry ) ;
+        traveler.FindRestaurant;
+           traveler.OrderFood( food );
+              restaurant.Cookfood;
+                 traveler.eat;
+                    restaurant.charge;
+
+      if (TicketOffice.Hastickets( ticket >= 3 ) );
+         traveler.BuyTickets;
+            TicketOffice.charge;
+               traveler.pay;
+      else traveler.DriveHome
+         
+
+      if boolean( cellphone.HadCamera ) 
+         traveler.TakePictures;
+             
+             if boolean( Cellphone.HadApp( Instagram ) ) ;
+                cellphone.upload(pictures) ;
+             else
+                traveler.DownloadApp() ; 
+                   cellphone.upload( pictures ) ;
+             cellphone.typeword( "beautiful!!" ) ;
+       
+       if boolean( Peter tired || Mark tired || Mary tired ) ;
+           traveler.BookHotel( room ) ;
+              hotel.charge() ;
+                traveler.pay();
+                   traveler.checkin( name ) ;
+                   staff.ConfirmInfor( name ) ;
+                         traveler.sleep() ;
+                            traveler.checkout() ;
+----              
 2. Organise a career fair(Suppose you are the organiser) 
- 2.1. Survey which company is interested in coming to the career fair and collect the information
- 2.2. Discuss with other staff and make a schedule for the day
+ 2.1. Survey which company is coming to the career fair and record it
+ 2.2. Send the notification to students
  2.3. Arrange the site and date for helding the career fair 
  2.4. Post the information on website
  2.5. Buy the commercial to publicize the career fair 
- 2.6. Hire the staff member and teach them to guide the attendance
+ 2.6. Hire the staff member 
  2.7. Fix up the place for the career fair
  2.8. Control and command the situation on the career fair day
- 
- 
 
+      Organiser
+      Data: name
+      Behavior: survey, record, SendNotification, Findplace, ArrangePlace, ArrandeDate, PostInfor, BuyCommercial, hire, control
+      
+      AttendStudents
+      Data: name, school, program, resume
+      Behavior: FindCompany, PrepareDoc, pass
+
+      place
+      Behavior: FitTheNumber
+
+      AttendCompany
+      Data: name
+      Behavior: interview, GiveOffer, ComeToFair
+
+      CareerFair
+      Data: name, date, place 
+      Behavior: begin, end
+
+      StaffMember
+      Data: name
+      Behavior: learn, GuideAttendance, FixUpPlace, FollowCommand, 
+
+----Sequence of Flow - Invoke Objects with Behaviors
+
+      Organiser David;  
+      AttendStudents [] students; 
+      place place;
+      company [] companies;
+      CareerFair CareerFair;
+      StaffMember [] StaffMembers; 
+
+      David.survey( if companies{ google, facebook, amazon, microsoft, apple } ComeToFair );
+         David.record( AttendCompanies );
+        
+      David.SendNotification ( AttendCompanies ) --> students; 
+         students.prepareDoc( resume );
+
+      if David.FindPlace( PlaceFitNumber(students) );
+         David.Arrangeplace;
+           David.ArrangeDate;
+
+      David.PostInfor( place, companies, date );
+      David.BuyCommercail;
+
+      David.hire( StaffMembers );
+         StaffMembers.learn;
+
+      StaffMember.FixUpPlace;
+
+      if boolean ( companies ready && StaffMember ready && FixUp ready );
+         CareerFair.begin;
+            StaffMembers.GuideAttendance;
+               students.FindCompany;
+                   companies.interview (students (name, program, resume) );
+                      for 
+                         Students.pass;
+                         companies.GiveOffer;
+                      else 
+                         students.FindCompany;
+                         companies.interview (students (name, program, resume) );
+
+       David.control;
+          StaffMember.FollowCommand
+
+       if boolean ( companies done || times up);
+          CareerFair.end;
+----
 3. Order Pizza from Pizza Hut
- 3.1. Download the Pizza Hut app form app store
- 3.2. Go to the app and choose the flavor
- 3.3. Pay for the pizza with credit card
- 3.4. Pick up the pizza when it's sent to your home
+ 3.1. Go to the website and choose the flavor
+ 3.2. Pay for the pizza with credit card
+ 3.3. Pizza Hut make the pizza
+ 3.4. Pizza Hut Deliver the pizza
+ 3.5. Pick up the pizza when get the phone call
 
+        consumer
+        Data: name, phone, address
+        Behavior: chooseFlavor, pay, PickUpPizza, AuthorizeCard, AnswerPhone, eat, hungry
+
+        Pizza Hut
+        Data: ConsumerName, ConsumberPhone, ConsumerAddress, ConsumerFlavor
+        Behavior: GetOrder, MakePizza, SendPizza, 
+
+        Phone
+        Behavior: Call, endcall
+
+        PizzaCar
+        Behavior: Launch, arrive, CheckInfor
+
+----Sequence of Flow - Invoke Objects with Behaviors
+
+        consumer Sam;
+        restaurant Pizzahut;
+        Phone phone;
+        car car;
+  
+        if boolean( Sam hungry );
+           Sam.chooseFlavor(seafood);
+           
+        Sam.pay( name, phone, address );
+           Sam.AuthorizeCard (infor);
+              PizzaHut.GetOrder(ConsumerFlavor,ConsumerName, ConsumberPhone, ConsumerAddress);
+
+        PizzaHut.MakePizza(seafood);
+        
+        PizzaHut.SendPiza(ConsumerAddress);
+           PizzaCar.launch;
+              PizzaCar.arrive;
+                 Phone.call(name, phone);
+                    Sam.AnswerPhone;
+                       Phone.endcall;
+                    
+        if Sam.AnswerPhone;
+              Sam.PickUpPizza;
+                 PizzaHut.CheckInfor( name, flavor);
+                    Sam.eat;
+----
 4. Design a code sharing platform (eg: Github).
 
-5. Design a soft-drink/snacks vending machine.
- 5.1. Choose some of the popular snacks/drink from the statics on the web to sell in the machine
- 5.2. Setup the monitor on the machine that can tell the consumer the price of the product, and the balance they need to give
- 5.2. Setup the system that can distinguish the money consumer put in, and give back the correct change by calculating
- 5.3. Design the machine that can maintain the temperature at an exact point to keep the snacks/drink fresh
- 5.4. setup the machine that can move the thing consumer buy from shelf to them
- 5.5. Setup an alarm when encounter big impact to prevent the money or the product from stolen
- 5.6. Setup a timer to turn off part of the light if the machine hasn't been used for a while to save electricity
+ 4.1. Authorize user infor
+ 4.2. Set profile
+ 4.3. Create new repositories and edit
+ 4.4. add collaboraters
+ 4.5. follow or star other
  
+        GithubPlatform
+        Data: UserName, UserPassword, UserProfile
+       
+        Behavior:
+        
+        Authorize ( UserName, UserPassword ) {
+           
+           if ( UserName, UserPassword == correct );
+               output "Username + log in!" ;
+           else
+               output " infor error!" ;
+           }
+
+        SetProfile{
+     
+            user.UploadPic( picture );
+            
+            user.TypeEmail( mail );
+               user.ConfirmEmail;
+                  system.SetEmail;
+             
+            user.TypeBio( bio );
+                  system.SaveBio;
+                
+                   }
+
+         CreateRepo {
+
+             user.TypeTitle ( title );
+             user.typeContent ( content );
+             
+             if user.FindBug;
+                 user.edit;
+ 
+                     }
+
+          AddRepo {
+  
+              user.SearchUser;
+                  if 
+                    System FindUser( output "TheUser" );
+                       user.Invite;
+                          system.SendNotification ( "TheUser" );
+                  
+                            if TheUser.confirm();
+                              System.output " add sucessfully!";
+                            else
+                              System.output " waiting permission ";
+                          
+                   else
+                      output "user not found!" ;
+              
+                    }
+                           
+            FollowOrStar {
+                
+                  user.SearchUser;
+                     user.follow;
+                        Theuser.AddFollowNum ( FollowNum++ );
+                    
+                     user.star;
+                         user.AddStarNum ( StarNum++ );
+                         
+
+                          }
+----
+5. Design a soft-drink/snacks vending machine.
+ 5.1. Setup the monitor that can tell the consumer the price of the product, and the balance they need to give
+ 5.2. distinguish the money consumer put in, and give back the correct change by calculating
+ 5.3. maintain the temperature at an exact point to keep the snacks/drink fresh
+ 5.4. move the thing consumer buy from shelf to them
+ 5.5. Setup an alarm when encounter big impact to prevent the money or the product from stolen
+
+         VendingMachine
+         Data: price, drink, snack, coin, alarm, temp, shelf
+         Behavior: ShowPrice, ShowBalance, ReceiveCoin, GiveBackCoin, MaintainTemp, CoolDown, Move, AlarmRing, contact
+
+       
+
+----Sequence of Flow - Invoke Objects with Behaviors
+        
+         VendingMachine machine
+         
+         ShowPrice( items [] items );
+         
+         ReceiveCoin{
+
+             if consumber.choose (items > 0);
+                ShowPrice(item); 
+                   consumer.InsertCoin;
+                      ShowBalance( price - InsertCoin );
+                   
+                   if ( price == InsertCoin );
+                      Move ( item );
+                   if ( InsertCoin > price );
+                      GiveBackCoin ( InsertCoin - price );
+                         Move ( item );
+                    }
+
+         MaintainTemp{
+      
+              if ( temp > SetTemp );
+                 CoolDown ( till temp <= temp );
+
+                     }
+
+         AlarmRing{
+
+              if encounter ( impact > SetImpact );
+                 AlarmRing ;
+                    contact ( OfficeGuard );
+                       guard.check;
+                          guard.OffAlarm;
+
+                  }
+----
 
 Tips : 
 1. You may go as deep as you want , like the first scenario will be an example, you can simplify it or make it more complex.
@@ -60,10 +369,3 @@ Requirement:
 1. Deadline is Sep, 15th. If you encounter any problem to meet this deadline, please contact TA or Professor directly.
 
 2. Individual work, not team project. But can have discuss with other classmates. 
-
-Contact GitHub
-API
-Training
-Shop
-Blog
-About
