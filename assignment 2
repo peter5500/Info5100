@@ -7,13 +7,26 @@
 
 	1. Write a java function to calculate the salary of an employee based on the following rules.
 		i. function takes input of number of hours an employee worked and returns the salary.
-		ii.  The first 36 hours worked are paid at a rate of 15.0, then the next 5 hours are paid at a rate of 15 * 1.5. Hours after that up to a max of 48 are paid at a rate of 15 * 2.
+		ii.The first 36 hours worked are paid at a rate of 15.0, then the next 5 hours are paid at a rate of 15 * 1.5. 
+		   Hours after that up to a max of 48 are paid at a rate of 15 * 2.
 		
 		Here is the prototype you can work with
 		
-		public double employeeSalary( double hours){
-	
-		}
+		public double employeeSalary( double hours ){
+		      if( hours <= 36 ){
+		      return 36*15;
+		      }
+		      if( 41 >= hours > 36 ){
+		      return 36*15+(hours-36)*15*1.5;
+		      }
+		      if( 48 >= hours > 41 ){
+		      return 36*15+5*15*1.5+7*15*2;
+		      }
+		      else{
+		      System.out.println("Hours exceed maxium hours")
+		 }
+		      
+		      
 
 	2. Write a java function that adds all the digits of an integer until it is single digit.
 		i. function takes an integer as input and returns its sum of digits.
@@ -42,7 +55,8 @@
 
        5. Write a java class called customer (Add detail as needed) : 
               i. Create Attributes: customer name and which pizzas customer has ordered. 
-              ii. Think about what kind of data structure can be used to record the pizza name and number of each kind of pizza.( Give me your thought, Extra credit of 1 point)
+              ii. Think about what kind of data structure can be used to record the pizza name and number of each kind of pizza.
+	      ( Give me your thought, Extra credit of 1 point)
               iii. In main method , sum up how much money the customer spent. 
 
 
