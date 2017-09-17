@@ -12,14 +12,13 @@
 		
 		Here is the prototype you can work with
 		
-		public double employeeSalary( double hours ){
-		      if( hours <= 36 ){
+		publiif( hours <= 36 ){
 		      return 36*15;
 		      }
-		      if( 41 >= hours > 36 ){
+		      if( 41 >= hours && hours > 36 ){
 		      return 36*15+(hours-36)*15*1.5;
 		      }
-		      if( 48 >= hours > 41 ){
+		      if( 48 >= hours && hours > 41 ){
 		      return 36*15+5*15*1.5+7*15*2;
 		      }
 		      else{
