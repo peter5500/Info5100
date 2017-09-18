@@ -37,7 +37,7 @@
 	
 		public int addDigits( int input ){
 		    while ( input >= 10 ){
-			input = input/10 + input%10
+			input = input/10 + input%10;
 		    }
 		    return input;
 		}
