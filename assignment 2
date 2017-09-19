@@ -15,16 +15,16 @@
 		double hours;
 		public double employeeSalary( double hours ){
 		      if ( hours <= 36 ){
-		      return 36*15;
+		      return hours*15;
 		      }
-		      else if( 41 >= hours && hours > 36 ){
+		      else if( hours <= 41 && hours > 36 ){
 		      return 36*15+(hours-36)*15*1.5;
 		      }
-		      else if( 48 >= hours && hours > 41 ){
-		      return 36*15+5*15*1.5+7*15*2;
+		      else if( hours <= 48 && hours > 41 ){
+		      return 36*15+5*15*1.5+(hours-41)*15*2;
 		      }
 		      else{
-		      System.out.println("Hours exceed maxium hours");
+		      return 36*15+5*15*1.5+7*15*2;
 		 }
 		      
 		      
