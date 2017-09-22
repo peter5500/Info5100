@@ -3,6 +3,7 @@ package assignment2;
 import java.util.HashMap;
 
 /* use Hashmap to record the data
+   other classes that used are in pizza.java
  */
 
 public class Q5Customer {
