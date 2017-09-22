@@ -22,12 +22,6 @@ public class Q6IsoscelesTriangle {
             System.out.println();
         }
 
-
-
-
-
         }
-
-
 
     }
