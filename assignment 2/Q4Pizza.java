@@ -55,14 +55,17 @@ class Q4Pizza {
        System.out.println( "Do not have this flavor, please choose another!" );
    }
 
-   public void pizza(){
+   public Q4pizza(){
        this.type = "random";
        this.unitPrice = 3.0;
        this.loyaltyPoints = 8;
        this.prepareTime = 5;
+       return;
    }
 
    public static void printTypeWithinTime(List<Q4Pizza> menu, int time) {
+    /*provide the kinds that can make within the time
+      */
        for(int i = 0; i < menu.size(); i++) {
            Q4Pizza temp = menu.get(i);
            if(temp.prepareTime < time) {
@@ -79,7 +82,8 @@ class Q4Pizza {
        Q4Pizza peppyPaneer = new Q4Pizza("PeppyPaneer", 3.0, 5, 11);
 
        List<Q4Pizza> menu = new ArrayList<>(Arrays.asList(gourmet, doubleCheese, mexicanGreenWave, margherita, peppyPaneer));
-       printTypeWithinTime(menu, 100);
+       printTypeWithinTime(menu, 5); 
+       printTypeWithinTime(menu, 20);
 
 
    }
